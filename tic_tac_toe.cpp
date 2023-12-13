@@ -195,6 +195,10 @@ int main() {
       gameStart();
       cin >> gamemode;
       break;
+    
+    //winner or lose screen
+    cout << "\033[2J\033[0;0H"; // clears screen idk how
+    cout << "WINNER";
 
     return 0;
     
