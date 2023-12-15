@@ -13,6 +13,7 @@
 
 #include <iostream>
 #include <windows.h>
+#include <list>
 
 using namespace std;
 
@@ -20,9 +21,9 @@ using namespace std;
 class TwoPlayers
 {
 public:
-    char gameBoard[3][3] = { {'1','2','3'}, {'4','5','6'}, {'7','8','9'} };
+    string gameBoard[3][3] = { {"1","2","3"}, {"4","5","6"}, {"7","8","9"} };
 
-    char turn = 'X';
+    string turn = "X";
     int choice;
     int row, column;
     int count = 0;
@@ -36,7 +37,52 @@ public:
         }
     }
 
+    string addColor(string x)
+    {
+
+        if (x == "X") 
+        {
+            return "\033[1;31mX\033[0m";
+        }
+        else if (x == "O")
+        {
+            return "\033[1;34mO\033[0m";
+        }
+        else 
+        {
+            return x;
+        }
+
+    }
+   
+
     void printBoard()
+    {
+        string row0col0 = gameBoard[0][0];
+        string row0col1 = gameBoard[0][1];
+        string row0col2 = gameBoard[0][2];
+
+        string row1col0 = gameBoard[1][0];
+        string row1col1 = gameBoard[1][1];
+        string row1col2 = gameBoard[1][2];
+
+        string row2col0 = gameBoard[2][0];
+        string row2col1 = gameBoard[2][1];
+        string row2col2 = gameBoard[2][2];
+  
+        cout << "\t     |     |     \n";
+        cout << "\t  " << addColor(row0col0) << "  |  " << addColor(row0col1) << "  |  " << addColor(row0col2) << " \n";
+        cout << "\t_____|_____|_____\n";
+        cout << "\t     |     |     \n";
+        cout << "\t  " << addColor(row1col0) << "  |  " << addColor(row1col1) << "  |  " << addColor(row1col2) << " \n";
+        cout << "\t_____|_____|_____\n";
+        cout << "\t     |     |     \n";
+        cout << "\t  " << addColor(row2col0) << "  |  " << addColor(row2col1) << "  |  " << addColor(row2col2) << " \n";
+        cout << "\t     |     |     \n";
+
+    }
+
+   /* void printBoard()
     {
 
         cout << "\t     |     |     \n";
@@ -49,15 +95,16 @@ public:
         cout << "\t  " << gameBoard[2][0] << "  |  " << gameBoard[2][1] << "  |  " << gameBoard[2][2] << " \n";
         cout << "\t     |     |     \n";
 
-    }
+    }*/
+
     //game funcs
     void playerTurn()
     {
-        if (turn == 'X')
+        if (turn == "X")
         {
             cout << "Player 1's turn [X]: ";
         }
-        else if (turn == 'O')
+        else if (turn == "O")
         {
             cout << "Player 2's turn [O]: ";
         }
@@ -80,18 +127,18 @@ public:
             cout << "Invalid Move";
         }
 
-        if (turn == 'X' && gameBoard[row][column] != 'X' && gameBoard[row][column] != 'O')
+        if (turn == "X" && gameBoard[row][column] != "X" && gameBoard[row][column] != "O")
         {
-            gameBoard[row][column] = 'X';
-            turn = 'O';
+            gameBoard[row][column] = "X";
+            turn = "O";
             count += 1;
             cout << count;
             
         }
-        else if (turn == 'O' && gameBoard[row][column] != 'X' && gameBoard[row][column] != 'O')
+        else if (turn == "O" && gameBoard[row][column] != "X" && gameBoard[row][column] != "O")
         {
-            gameBoard[row][column] = 'O';
-            turn = 'X';
+            gameBoard[row][column] = "O";
+            turn = "X";
             count += 1;
             cout << count;
 
@@ -100,11 +147,11 @@ public:
         else
         {
             cout << "Box already filled up, pick a different box.\n";   
-            if (turn == 'X')
+            if (turn == "X")
             {
                 cout << "Player 1's turn [X]: ";
             }
-            else if (turn == 'O')
+            else if (turn == "O")
             {
                 cout << "Player 2's turn [O]: ";
             }
@@ -125,7 +172,7 @@ public:
             {
 
                 //playerturn immediatly changes turn = X -> turn = 0
-                if (turn == 'X') {
+                if (turn == "X") {
                     return 2;
                 
                 }
@@ -139,7 +186,7 @@ public:
             //diagonal wins
             if (gameBoard[0][0] == gameBoard[1][1] && gameBoard[0][0] == gameBoard[2][2] || gameBoard[0][2] == gameBoard[1][1] && gameBoard[0][2] == gameBoard[2][0])
             {
-                if (turn == 'X') {
+                if (turn == "X") {
                     return 2;
                 
                 }
