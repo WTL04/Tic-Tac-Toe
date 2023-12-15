@@ -1,8 +1,5 @@
 New:
-- Implemented class structure
-- Implemented Win, Lose, Draw screen
-- Finished TwoPlayer mode
+- Implemented color on 'X' and 'O'
 
-Planned Next:
-- Implement color on 'X' and 'O'
-- Implement Computer player
+Planned Next: 
+- Implement Player vs Computer
